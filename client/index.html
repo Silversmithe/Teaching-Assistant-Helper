@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>TA Question Helper: Main</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    
+    <body>
+        
+        <div id="border">
+            
+            <div id="title-space">
+                <p id="title">Teaching Assistant Question Helper</p>
+                <br>
+                <i id="prompt">I am a ...</i>
+                <br>
+            </div>
+
+            <div id="selection">
+                <button class="select" id="student-btn" type="button"><b>STUDENT</b></button>
+                <br><br>
+                <button class="select" id="ta-btn" type="button"><b>TEACHING ASSISTANT</b></button>
+		<br><br>
+		<button id="register" type="button"><b>REGISTER</b></button>
+            </div>
+
+            <div id="forms">
+                <form id="student-form" >
+                    <p>Student</p>
+                    <hr>
+        
+                    Name: <input type="text" value="" name="name">
+                    <br>
+                    <br>
+                    Session ID: <input type="number" value=""/>
+                    <br>
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+                
+                <form id="ta-form">
+                    <p>Teaching Assistant</p>
+                    <hr>
+        
+                    Username: <input type="text" value="" name="username">
+                    <br>
+                    <br>
+                    Password: <input type="password"/>
+                    <br>
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+    		
+		<form id="ta-register">
+		    <p>Teaching Assistant Registration</p>
+		    <hr>
+		    
+		    Username: <input type="text" value="" name="username">
+		    <br><br>
+		    Password: <input type="password"/>
+		    <br><br>
+		    Confirm Password: <input type="password" />
+		    <br><br>
+	            Authorization Code: <input type="password" />
+    		    <br><br>
+		    <input type="submit" />		    
+		</form>
+
+                <br>
+                <button id="cancel">Back</button>
+		<br>
+	 	<p id="status"> Extra information goes here... </p>
+	    </div>
+        
+        </div>
+        
+    </body>
+    
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/index.js"></script>
+
+</html>
