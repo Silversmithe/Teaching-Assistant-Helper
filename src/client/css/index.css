@@ -1,0 +1,30 @@
+#border{
+    text-align: center;
+    padding: 10%;   
+}
+
+#title-space{
+    padding: 5%;
+}
+
+#title{
+    font-size: 24px;
+}
+
+#prompt{}
+
+#selection {
+    visibility: visible;
+}
+
+#student-btn, #ta-btn {
+    width: 200px;
+    height: 50px;
+    font-family: sans-serif;
+    background-color: skyblue;
+}
+
+#ta-form, #student-form, #cancel {
+    visibility: hidden;
+    display: none;
+}
