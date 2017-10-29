@@ -1,6 +1,6 @@
 #border{
     text-align: center;
-    padding: 10%;   
+    padding: 5%;   
 }
 
 #title-space{
@@ -24,7 +24,16 @@
     background-color: skyblue;
 }
 
-#ta-form, #student-form, #cancel {
+#ta-form, #student-form, #ta-register {
+    background-color: lightblue;
     visibility: hidden;
     display: none;
+}
+
+#cancel {
+    visibility: hidden;
+    display: none;
+}
+
+form{
 }
