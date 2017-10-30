@@ -1,11 +1,11 @@
 <?PHP 
     session_start();
     /* Reroutes clients that are not logged in */
-    if(!isset($_SESSION["login-valid"])){
+    if(!isset($_SESSION["login-valid"]) || $_SESSION["login-valid"] == false){
         // redirect to index
         header("Location: logout.php");
         exit();
-    } 
+    }
 
     if(!isset($_SESSION["questions"])){
         $_SESSION["questions"] = array();
@@ -13,9 +13,10 @@
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // this is when the user presses the "send" button
-        array_push($_SESSION["questions"], $_POST["question"]);
-    }
-    
+        if(strlen($_POST["question"]) > 0){
+            array_push($_SESSION["questions"], $_POST["question"]);   
+        }
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -32,21 +33,43 @@
             <b style="font-size: 24px;"><?PHP echo $_SESSION["lab-name"]; ?></b>
             <br><br>
             <i><?PHP echo $_SESSION["user-type"]; ?></i>
-            <p>Welcome, <i><?PHP echo $_SESSION["name"]; ?></i></p>
+            <p>Welcome, <i><?PHP echo $_SESSION["uname"]; ?></i></p>
             <p>PIN: <i><?PHP echo $_SESSION["session-pin"]; ?></i></p>
+            
+            <form action="logout.php" method="post">
+                <input type="submit" value="Log Out" />
+            </form>
+
+            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+                <input type="submit" value="Refresh" />
+            </form>
+            <hr>
         </div>
         
-        <form action="logout.php" method="post">
-            <input type="submit" value="Log Out" />
-        </form>
-        <hr>
         
-        <div id="forum" style="width: 100%; height: 100%; background-color: lightgray;">
+        <div id="forum" style="width: 100%; background-color: lightgray;">
             <?PHP
-                $length=count($_SESSION["questions"]);
-                for($x = 0; $x < $length; $x++) {
-                    echo $_SESSION["questions"][$x];
-                    echo "<br><br>";
+                // logging in
+                
+                $dbhost = "dbserver.engr.scu.edu";
+                $servername = "sdb_shoff";
+                $username = "shoff";
+                $password = "00001072205";
+                
+                // Create connection
+	            $conn = mysqli_connect($dbhost, $username, $password, $servername) or die("Error" . mysqli_error($conn));
+            
+                // pull all questions
+                $questions = $conn->query("SELECT * FROM QA WHERE session_id = " . $_SESSION["session-pin"]);
+            
+                while($row = mysqli_fetch_assoc($questions)){
+                    echo "<br>";
+                    echo $row["time"];
+                    echo "<br>";
+                    echo $row["student_name"] . ": " . $row["question"];
+                    echo "<br>";
+                    echo "(A): " . $row["answer"];
+                    echo "<br><hr>";
                 }
             ?>
         </div>
@@ -54,9 +77,12 @@
         <div id="footer">
             <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
                 <input type=text name="question" style="width: 85%; height: 40px; font-size: 18px;"/> 
-                <input type="submit" value="send" style="width: 10%; height: 40px;"/>
+                <input id="send" type="submit" value="send" style="width: 10%; height: 40px;"/>
             </form>
         </div>
         
     </body>
+    
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/app.js"></script>
 </html>

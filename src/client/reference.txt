@@ -1,0 +1,7 @@
+session-pin
+uname
+name
+pass
+user-type
+login-valid
+lab-name

@@ -30,9 +30,9 @@
                 <form id="student-form" action="php/student_login.php" method="post">
                     <p>Student</p>
                     <hr>
-                    Name: <input type="text" name="name" value=""/>
+                    Name: <input type="text" name="uname" value=""/>
                     <br><br>
-                    PIN: <input type="text" name="pin" value="" />
+                    PIN: <input type="text" name="session-pin" value="" />
                     <br><br>
                     <input type="submit" value="Submit" />
                 </form>
@@ -40,9 +40,9 @@
                 <form id="ta-form" action="php/ta_login.php" method="post">
                     <p>Teaching Assistant</p>
                     <hr>
-                    Username: <input type="text" value="" name="username" />
+                    Username: <input type="text" value="" name="uname" />
                     <br><br>
-                    Password: <input type="password" name="password"/>
+                    Password: <input type="password" name="pass"/>
                     <br><br>
                     <input type="submit" value="Submit" />
                 </form>
@@ -65,9 +65,8 @@
 
                 <br>
                 <button id="cancel">Back</button>
-		<br>
-	 	<p id="status"> Extra information goes here... </p>
-	    </div>
+		        <br>
+	         </div>
         
         </div>
         

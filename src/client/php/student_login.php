@@ -2,8 +2,8 @@
     session_start();
 
     $_SESSION["user-type"] = "Student";
-    $_SESSION["name"] = $_POST["name"];
-    $_SESSION["session"] = $_POST["pin"];
+    $_SESSION["uname"] = $_POST["uname"];
+    $_SESSION["session-pin"] = $_POST["session-pin"];
     
     /* Verify Student Identity via session */
     

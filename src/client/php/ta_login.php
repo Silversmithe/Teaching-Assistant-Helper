@@ -2,10 +2,10 @@
     session_start();
 
     // User information
-    $_SESSION["user"] = "Teaching Assistant";
-    $_SESSION["name"] = $_POST["username"];
+    $_SESSION["user-type"] = "Teaching Assistant";
+    $_SESSION["uname"] = $_POST["uname"];
 
-    $password = $_POST["password"];
+    $password = $_POST["pass"];
 
     /* Verify user and re-route to session */
 
