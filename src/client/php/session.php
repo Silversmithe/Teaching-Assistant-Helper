@@ -66,7 +66,7 @@
             <form id="new-session" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
                 Session Name: <input type="text" name="lab-name" value="lab_name"/>
                 <br><br>
-                Session Pin:  <input type="text" name="session-pin" value="session_pin" />
+                PIN:  <input type="text" name="session-pin" value="pin" />
                 <br><br>
                 <input type="submit" value="(+) Create Session" />
             </form>
