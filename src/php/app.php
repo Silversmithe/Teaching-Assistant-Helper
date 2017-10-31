@@ -24,18 +24,18 @@
     } 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en">
     
     <head>
-    	<title>TAQH: Main Application</title>
+    	<title>TA Question Helper: App</title>
 	<link rel="stylesheet" 	type="text/css" href="css/app.css">
     </head>
     
     <body>
         
-        <div>
-            <b style="font-size: 24px;"><?PHP echo $_SESSION["lab-name"]; ?></b>
+        <div id="app-nav" >
+            <b id="lab-label" ><?PHP echo $_SESSION["lab-name"]; ?></b>
             <br><br>
             <i><?PHP echo $_SESSION["user-type"]; ?></i>
             <p>Welcome, <i><?PHP echo $_SESSION["name"]; ?></i></p>
@@ -51,11 +51,10 @@
             <hr>
         </div>
         
-        
-        <div id="forum" style="width: 100%; background-color: lightgray;">
+        <div id="forum" >
             <?PHP
+
                 // logging in
-                
                 $dbhost = "dbserver.engr.scu.edu";
                 $servername = "sdb_shoff";
                 $username = "shoff";
@@ -80,9 +79,9 @@
         </div>
         
         <div id="footer">
-            <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-                <input type=text name="question" style="width: 85%; height: 40px; font-size: 18px;"/> 
-                <input id="send" type="submit" value="send" style="width: 10%; height: 40px;"/>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                <input id="query-input" type=text name="question" /> 
+                <input id="send" type="submit" value="send" />
             </form>
         </div>
         
