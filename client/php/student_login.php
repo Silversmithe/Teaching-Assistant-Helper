@@ -33,7 +33,7 @@
 	}
     // possibly want a token here instead
 	// Student has been validated at this point
-    $conn->query("INSERT INTO Students (sessions_id, name) VALUES (" . $_SESSION["session-pin"] . ", " . $_SESSION["name"] . ")");
+    $conn->query("INSERT INTO Students (session_id, name) VALUES (" . $_SESSION["session-pin"] . ", '" . $_SESSION["name"] . "')");
     // go to the app page now
 	$title = $conn->query("SELECT * FROM Sessions WHERE session_id = " . $_SESSION["session-pin"]);
 	$_SESSION["lab-name"] = mysqli_fetch_assoc($title)["title"];

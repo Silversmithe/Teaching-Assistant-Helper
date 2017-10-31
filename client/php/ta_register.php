@@ -1,6 +1,6 @@
 <?PHP
     $name = $_POST["name"];
-    $username = $_POST["uname"];
+    $uname = $_POST["uname"];
     $pass = $_POST["password"];
     $pass_confirm = $_POST["confirm-password"];
     $auth_code = $_POST["auth-code"];
@@ -27,7 +27,7 @@
 	$conn = mysqli_connect($dbhost, $username, $password, $servername)
         or die("Error" . mysqli_error($conn));
 	
-	$conn->query("INSERT INTO TAs (name, username, password) VALUES ('" . $name . "', '" . $username . "', '" . $pass . "')");
+	$conn->query("INSERT INTO TAs (name, username, password) VALUES ('" . $name . "', '" . $uname . "', '" . $pass . "')");
 
     // check to make sure $auth_code is CORRECT
 
