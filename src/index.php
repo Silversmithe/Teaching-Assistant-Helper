@@ -1,9 +1,8 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en">
 
     <head>
         <title>TA Question Helper: Main</title>
-        
         <link rel="stylesheet" type="text/css" href="css/index.css">
     </head>
     
@@ -18,7 +17,7 @@
                 <br>
             </div>
 
-            <div id="selection">
+            <div id="select-space">
                 <button class="select" id="student-btn" type="button"><b>STUDENT</b></button>
                 <br><br>
                 <button class="select" id="ta-btn" type="button"><b>TEACHING ASSISTANT</b></button>
@@ -26,7 +25,7 @@
                 <button id="register" type="button"><b>REGISTER</b></button>
             </div>
 
-            <div id="forms">
+            <div id="form-space">
                 <form id="student-form" action="php/student_login.php" method="post">
                     <p>Student</p>
                     <hr>
@@ -65,15 +64,13 @@
 
                 <br>
                 <button id="cancel">Back</button>
-		<br>
-	 	<p id="status"> Extra information goes here... </p>
-	    </div>
-        
+				<br>
+
+		 		<p id="status"> Status information goes here... </p>
+			</div>
         </div>
-        
     </body>
     
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/index.js"></script>
-
 </html>

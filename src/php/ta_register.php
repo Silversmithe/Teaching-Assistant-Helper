@@ -6,10 +6,12 @@
     $auth_code = $_POST["auth-code"];
 	
 	$true_code = 12345;
+
 	if($auth_code != $true_code){
 		header("Location: logout.php");
 		exit();
 	}
+
 	if($pass != $pass_confirm){
 		header("Location: logout.php");
 		exit();

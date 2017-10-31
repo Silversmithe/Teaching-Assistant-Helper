@@ -43,38 +43,36 @@
 
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html lang="en">
 
     <head>
-        <title>Session Creation</title>
+        <title>TA Question Helper: Session Creation</title>
+		<link rel="stylesheet" type="text/css" href="../css/session.css">
     </head>
 
     <body>
     	<div id="border">
 
-	    <p style="font-size: 24px;">Lab Session Creation</p>
-        <p> Welcome, <?PHP echo $_SESSION["name"]; ?></p>
-	    <hr>
+			<p id="title-label" style="font-size: 24px;">Lab Session Creation</p>
+		    <p> Welcome, <?PHP echo $_SESSION["name"]; ?></p>
+			<hr>
 
-	    <div id="create-session" style="padding: 5%;">
-        
-            <form id="new-session" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-                Session Name: <input type="text" name="lab-name" value="lab_name"/>
-                <br><br>
-                <input type="submit" value="(+) Create Session" />
-            </form>
-            <br><br>
-            <form action="logout.php" method="post">
-                <input type="submit" value="Log Out" />
-            </form>
+			<div id="create-session" >
+		        <form id="new-session" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+		            Session Name: <input type="text" name="lab-name" value="lab_name"/>
+		            <br><br>
+		            <input type="submit" value="(+) Create Session" />
+		        </form>
+		        <br><br>
+		        <form action="logout.php" method="post">
+		            <input type="submit" value="Log Out" />
+		        </form>
+			</div>
 
-	    </div>
-	    
-	    <hr>    
-	</div>
-
+			<hr>  
+  
+		</div>
     </body>
-
 
 </html>
