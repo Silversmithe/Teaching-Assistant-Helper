@@ -4,12 +4,13 @@
     <head>
         <title>TA Question Helper: Main</title>
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     </head>
     
     <body>
         
         <div id="border">
-            
+
             <div id="title-space">
                 <p id="title">Teaching Assistant Question Helper</p>
                 <br>
@@ -26,7 +27,7 @@
             </div>
 
             <div id="form-space">
-                <form id="student-form" action="php/student_login.php" method="post">
+                <form id="student-form" class="form-style" action="php/student_login.php" method="post">
                     <p>Student</p>
                     <hr>
                     Name: <input type="text" name="name" value=""/>
@@ -36,7 +37,7 @@
                     <input type="submit" value="Submit" />
                 </form>
                 
-                <form id="ta-form" action="php/ta_login.php" method="post">
+                <form id="ta-form" class="form-style" action="php/ta_login.php" method="post">
                     <p>Teaching Assistant</p>
                     <hr>
                     Username: <input type="text" value="" name="username" />
@@ -46,7 +47,7 @@
                     <input type="submit" value="Submit" />
                 </form>
     		
-		        <form id="ta-register" action="php/ta_register.php" method="post">
+		        <form id="ta-register" class="form-style" action="php/ta_register.php" method="post">
                     <p>Teaching Assistant Registration</p>
                     <hr>
                     Name: <input type="text" name="name" />
@@ -57,8 +58,8 @@
                     <br><br>
                     Confirm Password: <input type="password" name="confirm-password" />
                     <br><br>
-                        Authorization Code: <input type="password" name="auth-code"/>
-                        <br><br>
+                    Authorization Code: <input type="password" name="auth-code"/>
+                    <br><br>
                     <input type="submit" value="Submit" />		    
                 </form>
 
@@ -72,5 +73,6 @@
     </body>
     
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/index.js"></script>
 </html>

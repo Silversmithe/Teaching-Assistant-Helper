@@ -2,6 +2,14 @@
 	app.css
 	October 31st, 2017
 */
+#qa {
+    text-align: center;
+}
+
+#announce {
+    text-align: center;
+}
+
 body {
     font-size: 18px;
 }

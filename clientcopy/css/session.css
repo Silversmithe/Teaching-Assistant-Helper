@@ -2,6 +2,21 @@
  * 	session.css
  * 	October 31st, 2017
  */
+body {
+    background-color: darkred;
+    background-size: auto;
+}
+
+#border {
+    padding: 5%;
+}
+
+#lab-creation{
+    border-radius: 20px;
+    padding: 5%;
+    background-color: whitesmoke;
+}
+
 #title-label{
 	padding: 5%;
 }

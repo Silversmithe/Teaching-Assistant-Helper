@@ -1,11 +1,13 @@
 <?PHP
 	session_start();
     /* Reroutes clients that are not logged in */
-    if(!isset($_SESSION["login-valid"]) || $_SESSION["login-valid"] == false){
-        // redirect to index
-        header("Location: logout.php");
-        exit();
-    }
+//    if(!isset($_SESSION["login-valid"]) || $_SESSION["login-valid"] == false){
+//        // redirect to index
+//        header("Location: logout.php");
+//        exit();
+//    }
+
+//    $_SESSION["user-type"] = "Student";
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // update information on server        
@@ -27,7 +29,17 @@
         <nav class="navbar navbar-default">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <span class="navbar-brand" onclick="toggleAnnounce();" href="javascript:void(0);"><a>TA Question Helper</a></span>
+                  <span class="navbar-brand" onclick="toggleAnnounce();" href="javascript:void(0);">
+                      <?PHP 
+                        $value = "";
+                        if(isset($_SESSION["lab-name"])) { $value = $value . $_SESSION["lab-name"] . ": "; }
+                        else { $value = $value . "Unknown Lab: "; }
+                      
+                        if(isset($_SESSION["user-type"])) { $value = $value . $_SESSION["user-type"]; }
+                        else { $value = $value . "unknown user"; }
+                        echo $value;
+                      ?>
+                      </span>
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -37,6 +49,8 @@
                 <div class="collapse navbar-collapse" id="Navbar">
                   <ul class="nav navbar-nav navbar-right">
                     <li id="announce-btn"><a >Toggle View</a></li>
+                    <li><a>Refresh</a></li>
+                    <li><a>Logout</a></li>
                   </ul>
                 </div>
               </div>
@@ -47,11 +61,16 @@
                 <div class="row-fluid">
                     <div class="col-xs-12">
                         <div id="app-nav" class="container">
-							<h2><?PHP echo $_SESSION["lab-name"]; ?></h2>
-                            <br><br>
-		        			<i><?PHP echo $_SESSION["user-type"]; ?></i>   
                             <p>Welcome, <i><?PHP echo $_SESSION["name"]; ?></i></p>
-		        			<p>PIN: <i><?PHP echo $_SESSION["session-pin"]; ?></i></p>
+                            <?PHP
+                                if(isset($_SESSION["user-type"]) && $_SESSION["user-type"] == "Teaching Assistant"){
+                                    if(isset($_SESSION["session-pin"])){
+                                        echo "<p>PIN: " . $_SESSION["session-pin"] . "</p>";
+                                    } else {
+                                        echo "<p>PIN: no session pin found </p>";
+                                    }
+                                }
+                            ?>
 
 							<form action="logout.php" method="post">
 						    	<button class="btn btn-default" type="submit" >Logout </button>
@@ -67,7 +86,7 @@
 
                 <div class="row-fluid">
                     <div id="qa" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <b>Questions and Answers</b>
+                        <h3>Questions and Answers</h3>
                         <hr>
                         <div id="app-forum" class="forum-area"></div>
                         <hr>
@@ -84,7 +103,7 @@
                     </div>
 
                     <div id="announce" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <b>Announcements</b>
+                        <h3>Announcements</h3>
                         <hr>
                         <div id="app-announce" class="forum-area"></div>
                         <hr>

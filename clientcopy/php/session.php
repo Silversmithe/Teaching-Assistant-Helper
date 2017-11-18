@@ -2,11 +2,11 @@
     session_start();
     $allset=false;
 
-    if(!isset($_SESSION["login-valid"]) || $_SESSION["login-valid"] == false){
-        // redirect to index
-        header("Location: logout.php");
-        exit();
-    }
+//    if(!isset($_SESSION["login-valid"]) || $_SESSION["login-valid"] == false){
+//        // redirect to index
+//        header("Location: logout.php");
+//        exit();
+//    }
     
     // Store form into session
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -53,33 +53,38 @@
 
     <head>
         <title>Session Creation</title>
+        <link rel="stylesheet" type="text/css" href="../css/session.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     </head>
 
     <body>
-    	<div id="border">
+    	<div id="border" class="container container-fluid">
 
-	    <p style="font-size: 24px;">Lab Session Creation</p>
-        <p> Welcome, <?PHP echo $_SESSION["name"]; ?></p>
-	    <hr>
-
-	    <div id="create-session" style="padding: 5%;">
-        
-            <form id="new-session" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
-                Session Name: <input type="text" name="lab-name" value="lab_name"/>
-                <br><br>
-                <input type="submit" value="(+) Create Session" />
-            </form>
-            <br><br>
-            <form action="logout.php" method="post">
-                <input type="submit" value="Log Out" />
-            </form>
-
-	    </div>
-	    
-	    <hr>    
-	</div>
-
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-8">
+                    <div id="lab-creation">
+                        <h2>Lab Session Creation</h2>
+                        <h3> Welcome, <?PHP echo $_SESSION["name"]; ?></h3>
+                        <hr>
+                        <div id="create-session" style="padding: 5%;">
+                            <form id="new-session" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+                                Session Name: <input type="text" name="lab-name" value="lab_name"/>
+                                <br><br>
+                                <button type="submit" class="btn btn-primary">Create Session</button>
+                            </form>
+                        </div>
+                        <br><hr><br>
+                        <form action="logout.php" method="post">
+                            <button type="submit" class="btn btn-default">Log Out</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xs-2"></div>   
+            </div>  
+	   </div>
     </body>
 
-
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </html>
