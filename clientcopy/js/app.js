@@ -33,6 +33,28 @@ var AArray = [];
 
 /*==== LOAD ON DOCUMENT READY ====*/
 $(document).ready(function(){
+//    if(sessionStorage.getItem("user-valid") != true){
+//        location.replace("../index.php");
+//    }
+    
+    $utype = sessionStorage.getItem("user-type");
+    $name = sessionStorage.getItem("user-name");
+    $lab_name = sessionStorage.getItem("lab-name");
+    $lab_pin = sessionStorage.getItem("lab-pin");
+    
+    // load navbar
+    $lab_user_name = $lab_name + ": " + String($utype);
+    $("#lab-user-name").val($lab_user_name);
+    
+    // load welcome
+    $welcome = "Welcome, " + String($name);
+    $("#welcome-title").val($welcome);
+    
+    if($utype == "ta"){
+        // load pin
+        $("#pin-info").val("PIN: " + String($lab_pin));
+    }
+    
     pullAndLoad();
 });
 

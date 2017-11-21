@@ -27,7 +27,7 @@
                         <br><br>
                         <button class="select" id="ta-btn" class="btn btn-default" type="button">Teaching Assistant</button>
                         <br><br>
-                        <button id="register" class="btn btn-default" type="button">Register</button>
+                        <button id="register" class="btn btn-default" type="button">Register TA</button>
                     </div>
                 </div>
             </div>
@@ -36,45 +36,45 @@
                 <div class="col-xs-2 col-lg-2"></div>
                 <div id="forms" class="col-xs-8 col-lg-8"> 
                     
-                    <form id="student-form" class="form-style" action="php/student_login.php" method="post">
+                    <form id="student-form" class="form-style">
                         <br>
                         <h3>Student</h3>
                         <hr>
-                        Name: <input type="text" name="name" value=""/>
+                        Name: <input id="student-name" type="text" name="name" value=""/>
                         <br><br>
-                        PIN: <input type="text" name="pin" value="" />
+                        PIN: <input id="student-pin" type="text" name="pin" value="" />
                         <br><br>
-                        <input type="submit" class="btn btn-default" value="Submit" />
+                        <button id="submit-student" type="button" class="btn btn-default">Submit</button>
                         <br><br>
                     </form>
 
-                    <form id="ta-form" class="form-style" action="php/ta_login.php" method="post">
+                    <form id="ta-form" class="form-style">
                         <br>
                         <h3>Teaching Assistant</h3>
                         <hr>
-                        Username: <input type="text" value="" name="username" />
+                        Username: <input id="ta-name" type="text" value="" name="username" />
                         <br><br>
-                        Password: <input type="password" name="password"/>
+                        Password: <input id="ta-pass" type="password" name="password"/>
                         <br><br>
-                        <input type="submit" class="btn btn-default" value="Submit" />
+                        <button id="submit-ta" type="button" class="btn btn-default">Submit</button>
                         <br><br>
                     </form>
 
-                    <form id="ta-register" class="form-style" action="php/ta_register.php" method="post">
+                    <form id="ta-register" class="form-style">
                         <br>
                         <h3>Teaching Assistant Registration</h3>
                         <hr>
-                        Name: <input type="text" name="name" />
+                        Name: <input id="ta-name" type="text" name="name" />
                         <br><br>
-                        Username: <input type="text" name="uname" />
+                        Username: <input id="ta-uname" type="text" name="uname" />
                         <br><br>
-                        Password: <input type="password" name="password"/>
+                        Password: <input id="ta-new-pass" type="password" name="password"/>
                         <br><br>
-                        Confirm Password: <input type="password" name="confirm-password" />
+                        Confirm Password: <input id="ta-pass-check" type="password" name="confirm-password" />
                         <br><br>
-                        Authorization Code: <input type="password" name="auth-code"/>
+                        Authorization Code: <input id="ta-auth" type="password" name="auth-code"/>
                         <br><br>
-                        <input type="submit" class="btn btn-default" value="Submit" />
+                        <button id="register-ta" type="button" class="btn btn-default">Submit</button>
                         <br><br>
                     </form>
 
@@ -84,7 +84,12 @@
                 </div>
                 <div class="col-xs-2 col-lg-2"></div>
             </div>
-
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="php/admin.php">Admin</a>
+                </div>
+            </div>
         </div>
     </body>
     

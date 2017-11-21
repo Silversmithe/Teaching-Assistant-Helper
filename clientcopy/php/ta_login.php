@@ -1,41 +1,46 @@
 <?PHP
     session_start();
-	$_SESSION["login-valid"] = false;
-    // User information
-    $_SESSION["user-type"] = "Teaching Assistant";
-    $_SESSION["username"] = $_POST["username"];
-    $pass = $_POST["password"];
 
-    /* Verify user and re-route to session */
+    if(isset($_POST['action']) && !empty($_POST['action'])) {
+        if ($_POST['action'] == 'log_ta'){
+            // make sure it is not completely empty
+            if (!(strlen($_POST["name"]) > 0 and strlen($_POST["pin"]) > 0)){
+                echo false;
+                exit();
+            }
+        
+            /*Verify that Name and pin are set */
+	        $login_valid = false;
+            // User information
+            $uname_val = $_POST["uname"];
+            $pass_val = $_POST["pass"];
 
-	$dbhost = "dbserver.engr.scu.edu";
-	$servername = "sdb_shoff";
-	$username = "shoff";
-	$password = "00001072205";
+            /* Verify user and re-route to session */
+            $dbhost = "dbserver.engr.scu.edu";
+            $servername = "sdb_shoff";
+            $username = "shoff";
+            $password = "00001072205";
 
 
-	// Create connection
-	$conn = mysqli_connect($dbhost, $username, $password, $servername)
-        or die("Error" . mysqli_error($conn));
+            // Create connection
+            $conn = mysqli_connect($dbhost, $username, $password, $servername)
+                or die("Error" . mysqli_error($conn));
 
-	$pass = hash("sha256", $pass);
-	$login = $conn->query("SELECT * FROM TAs WHERE username = " . "'" . $_SESSION["username"] . "'" . " AND password = " . "'" . $pass . "'");
-	
-	if(($login != false) and (mysqli_num_rows($login) != 0 )){
-		$_SESSION["login-valid"] = true;
-	} else{
-		header("Location: logout.php");
-		exit();
-	}
-    // possibly want a token instead
-	$_SESSION["name"] = mysqli_fetch_assoc($login)["name"];
-    // redirect
-    header("Location: session.php");
-    exit();
+            $pass_val = hash("sha256", $pass_val);
+            $login = $conn->query("SELECT * FROM TAs WHERE username = " . "'" . $uname_val . "'" . " AND password = " . "'" . $pass_val . "'");
+
+            if(($login != false) and (mysqli_num_rows($login) != 0 )){
+                $login_valid = true;
+            } 
+            
+            if($login_valid == true){
+                // possibly want a token instead
+                $obj->name = mysqli_fetch_assoc($login)["name"];
+                $obj->uname = mysqli_fetch_assoc($login)["username"];
+                echo json_encode($obj);
+                exit();
+            }
+            echo false;
+        } // end ta login
+    } // end post
 ?>
-
-<html>
-	<?PHP echo "|" . $pass . "|"; ?>
-	<?PHP echo "|" . $_SESSION["username"] . "|"; ?>
-	<?PHP echo "|" . $_SESSION["name"] . "|"; ?>
-</html>

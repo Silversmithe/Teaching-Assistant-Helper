@@ -1,51 +1,50 @@
 <?PHP
-    session_start();
-	/*Verify that Name and pin are set */
-	$_SESSION["login-valid"] = false;
-	if (strlen($_POST["name"]) > 0 and strlen($_POST["pin"]) > 0){
-	} else {
-		header("Location: logout.php");
-		exit("Must enter a name and session number.");
-	}
-	
-    $_SESSION["user-type"] = "Student";
-    $_SESSION["name"] = $_POST["name"];
-    $_SESSION["session-pin"] = $_POST["pin"];
+    if(isset($_POST['action']) && !empty($_POST['action'])) {
+        if ($_POST['action'] == 'log_student'){
+            
+            // make sure it is not completely empty
+            if (!(strlen($_POST["name"]) > 0 and strlen($_POST["pin"]) > 0)){
+                echo false;
+                exit();
+            }
+            
+            // attempt actual registration
+            $user_type = "Student";
+            $name_val = $_POST["name"];
+            $pin_val = $_POST["pin"];
+            /*Verify that Name and pin are set */
+	        $login_valid = false;
 
-	$dbhost = "dbserver.engr.scu.edu";
-	$servername = "sdb_shoff";
-	$username = "shoff";
-	$password = "00001072205";
-
-
-	// Create connection
-	$conn = mysqli_connect($dbhost, $username, $password, $servername)
-        or die("Error" . mysqli_error($conn));
+            $dbhost = "dbserver.engr.scu.edu";
+            $servername = "sdb_shoff";
+            $username = "shoff";
+            $password = "00001072205";
 
 
-	
-	$session = $conn->query("SELECT session_id FROM Sessions WHERE session_id = " . $_SESSION["session-pin"]);
-	if(($session != false) and mysqli_num_rows($session) != 0){
-		$_SESSION["login-valid"] = true;
-	}
-    if($_SESSION["login-valid"] == false){
-		header("Location: logout.php");
-		exit("invalid session id");
+            // Create connection
+            $conn = mysqli_connect($dbhost, $username, $password, $servername)
+                or die("Error" . mysqli_error($conn));
 
-	}
-
-
-
-    // possibly want a token here instead
-	// Student has been validated at this point
-    $insrt = $conn->prepare("INSERT INTO Students (session_id, name) VALUES (?, ?)");
-	$insrt->bind_param("is", $pin, $name);
-	$pin = $_SESSION["session-pin"];
-	$name = $_SESSION["name"];
-	$insrt->execute();
-    // go to the app page now
-	$result = $conn->query("SELECT * FROM Sessions WHERE session_id = " . $_SESSION["session-pin"]);
-	$_SESSION["lab-name"] = mysqli_fetch_assoc($result)["title"];
-    header("Location: app.php");
-    exit();
+            $session = $conn->query("SELECT session_id FROM Sessions WHERE session_id = " . $pin_val);
+            if(($session != false) and mysqli_num_rows($session) != 0){
+                $login_valid = true;
+            }
+            
+            if($login_valid == true){
+                // possibly want a token here instead
+                // Student has been validated at this point
+                $insrt = $conn->prepare("INSERT INTO Students (session_id, name) VALUES (?, ?)");
+                $insrt->bind_param("is", $pin, $name);
+                $pin = $pin_val;
+                $name = $name_val;
+                $insrt->execute();
+                
+                // go to the app page now
+                $result = $conn->query("SELECT * FROM Sessions WHERE session_id = " . $pin_val);
+                echo mysqli_fetch_assoc($result)["title"];
+                exit();
+            }
+            echo false;
+        }
+    }
 ?>

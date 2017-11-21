@@ -1,45 +1,49 @@
 <?PHP
-    $name = $_POST["name"];
-    $uname = $_POST["uname"];
-    $pass = $_POST["password"];
-    $pass_confirm = $_POST["confirm-password"];
-    $auth_code = $_POST["auth-code"];
-	
-	$true_code = 12345;
-	if($auth_code != $true_code){
-		header("Location: logout.php");
-		exit();
-	}
-	if($pass != $pass_confirm){
-		header("Location: logout.php");
-		exit();
-	}
-	
-    /* Code section to register teaching assistant */
+    if(isset($_POST['action']) && !empty($_POST['action'])) {
+        if ($_POST['action'] == 'create_ta'){
+            $name = $_POST["name"];
+            $uname = $_POST["uname"];
+            $pass = $_POST["pass"];
+            $pass_confirm = $_POST["pass_confirm"];
+            $auth = $_POST["auth"];
 
-	$dbhost = "dbserver.engr.scu.edu";
-	$servername = "sdb_shoff";
-	$username = "shoff";
-	$password = "00001072205";
+            // !!! need to change
+            $true_code = 12345;
+            if($auth != $true_code){
+                echo false;
+                exit();
+            }
+            if($pass != $pass_confirm){
+                echo false;
+                exit();
+            }
 
+            /* Code section to register teaching assistant */
 
-	// Create connection
-	$conn = mysqli_connect($dbhost, $username, $password, $servername)
-        or die("Error" . mysqli_error($conn));
-	
-	$pass = hash("sha256", $pass);
+            $dbhost = "dbserver.engr.scu.edu";
+            $servername = "sdb_shoff";
+            $username = "shoff";
+            $password = "00001072205";
 
-	$stmt = $conn->prepare("INSERT INTO TAs (name, username, password) VALUES (?, ?, ?)");
-	$stmt->bind_param("sss", $TAname, $TAuname, $TApassword);
-	$TAname = $name;
-	$TAuname = $uname;
-	$TApassword = $pass;
-	$stmt->execute();
+            // Create connection
+            $conn = mysqli_connect($dbhost, $username, $password, $servername)
+                or die("Error" . mysqli_error($conn));
 
-    // check to make sure $auth_code is CORRECT
+            $pass = hash("sha256", $pass);
 
-    // create a space in the database for the teaching assistant
+            $stmt = $conn->prepare("INSERT INTO TAs (name, username, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $TAname, $TAuname, $TApassword);
+            $TAname = $name;
+            $TAuname = $uname;
+            $TApassword = $pass;
+            $stmt->execute();
 
-    header("Location: ../index.php");
-    exit();
+            // check to make sure $auth_code is CORRECT
+
+            // create a space in the database for the teaching assistant
+
+            echo true;
+            exit();
+        }
+    }
 ?>

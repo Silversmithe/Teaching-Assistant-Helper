@@ -29,17 +29,7 @@
         <nav class="navbar navbar-default">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <span class="navbar-brand" onclick="toggleAnnounce();" href="javascript:void(0);">
-                      <?PHP 
-                        $value = "";
-                        if(isset($_SESSION["lab-name"])) { $value = $value . $_SESSION["lab-name"] . ": "; }
-                        else { $value = $value . "Unknown Lab: "; }
-                      
-                        if(isset($_SESSION["user-type"])) { $value = $value . $_SESSION["user-type"]; }
-                        else { $value = $value . "unknown user"; }
-                        echo $value;
-                      ?>
-                      </span>
+                  <span id="lab-user-name" class="navbar-brand" onclick="toggleAnnounce();" href="javascript:void(0);"></span>
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#Navbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -61,7 +51,8 @@
                 <div class="row-fluid">
                     <div class="col-xs-12">
                         <div id="app-nav" class="container">
-                            <p>Welcome, <i><?PHP echo $_SESSION["name"]; ?></i></p>
+                            <p id="welcome-title"></p>
+                            <p id="pin-info"></p>
                             <?PHP
                                 if(isset($_SESSION["user-type"]) && $_SESSION["user-type"] == "Teaching Assistant"){
                                     if(isset($_SESSION["session-pin"])){
