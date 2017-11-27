@@ -9,10 +9,10 @@ This section will give an in-depth guide on how to install and run our program, 
 Installing the Database
  
   	1. Email SCU technical support at support@engr.scu.edu and request to have a MySQL database account made for you.
-    2. Record the user name and password from the response, they will be needed to both access the database and rewrite the code        in the webpage folder. Your database's name is "sdb_<your_username>"
+    2. Record the user name and password from the response, they will be needed to both access the database and rewrite the code in the webpage folder. Your database's name is "sdb_<your_username>"
     3. Open up terminal on a Linux computer and type "setup mysql5"
     4. Next, type "mysql -h dbserver.engr.scu.edu -p -u <your_username> <database_name>" in terminal
-    5. Next, the terminal will prompt you for your password, into which you will enter the 		password you received earlier from        the email, giving you access to the database.
+    5. Next, the terminal will prompt you for your password, into which you will enter the 		password you received earlier from the email, giving you access to the database.
     
     
 Creating the Tables
@@ -39,9 +39,8 @@ Changing the Code
     After following the previous two sections, it is now necessary to change the code to access this new database you have created instead of the old database.
     
     1. Go to the "php" folder in the project folder
-    2. For every file in that folder, enter the file and wherever you see '$servername = "sdb_shoff";', '$username = "shoff";',
-       '$password = "00001072205";', change the "servername" value to your new database name, "username" to your new username,          and change the "password" value to your password
-    3. Go to "ta-register.php" and change the "$to" value to your own email to make yourself the administrator. This allows you        to receive the emails confirming TAs to use the program
+    2. For every file in that folder, enter the file and wherever you see '$servername = "sdb_shoff";', '$username = "shoff";', '$password = "00001072205";', change the "servername" value to your new database name, "username" to your new username, and change the "password" value to your password
+    3. Go to "ta-register.php" and change the "$to" value to your own email to make yourself the administrator. This allows you to receive the emails confirming TAs to use the program
     
     
    
