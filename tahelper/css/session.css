@@ -1,0 +1,30 @@
+/*
+ * 	session.css
+ * 	October 31st, 2017
+ */
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding: 5%; 
+    background-image: url("../img/conor.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+#border {
+    padding: 5%;
+}
+
+#lab-creation{
+    border-radius: 20px;
+    padding: 5%;
+    background-color: whitesmoke;
+}
+
+#title-label{
+	padding: 5%;
+}
