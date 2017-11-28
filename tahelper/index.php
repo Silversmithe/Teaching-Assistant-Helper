@@ -82,12 +82,6 @@
                 </div>
                 <div class="col-xs-2 col-lg-2"></div>
             </div>
-            
-            <div class="row">
-                <div class="col-xs-12">
-                    <a href="php/admin.php">Administrator</a>
-                </div>
-            </div>
         </div>
     </body>
     
