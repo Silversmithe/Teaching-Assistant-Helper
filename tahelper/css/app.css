@@ -1,24 +1,16 @@
 /*
 	app.css
-	October 31st, 2017
+	November 27th, 2017
+    
+    Styling for app.php
 */
+
+/* ==== TAG STYLES ==== */
 body {
     font-size: 18px;
 }
 
-.global {
-    padding: 1%;
-}
-
-#announce-btn {
-    display: none;
-}
-
-.forum-area {
-    height: 40vh;
-    overflow: scroll;
-}
-
+/* ==== WINDOW SIZE ==== */
 @media only screen and (max-width: 999px) {
 
     #announce { display: none; }
@@ -33,7 +25,7 @@ body {
     }
 }
 
-/* ==== TESTING STYLE === */
+/* ==== APP CONTENTS ==== */
 #qID, #squest {
     display: none;
 }
@@ -42,6 +34,19 @@ body {
     height: inherit;
     resize: vertical;
     width: 100%;
+}
+
+#announce-btn {
+    display: none;
+}
+
+.global {
+    padding: 1%;
+}
+
+.forum-area {
+    height: 40vh;
+    overflow: scroll;
 }
 
 .unanswered {

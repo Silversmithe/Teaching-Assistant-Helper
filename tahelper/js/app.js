@@ -1,3 +1,20 @@
+/*
+    app.js
+    November 27th, 2017
+    
+    Client-side programming for the main application
+    - loads the information from the user login
+    - dynamically loads questions, answers, and announcements
+    - Post questions, post answers
+    - tas can respond to questions
+    - students can dismiss their own questions, tas can dismiss any question
+    
+    DEF:
+    - Forum: an area where user input is taken and displayed to initiate
+             a conversation.
+*/
+
+/* OBJECT DEFINITION */
 /*==== Question and Answer Object ====*/
 class QAObject {   
     // questions and answers
@@ -33,10 +50,12 @@ var AArray = [];
 
 /*==== LOAD ON DOCUMENT READY ====*/
 $(document).ready(function(){
+    /* Code that executes when the page has completely loaded */
 
-//    if(sessionStorage.getItem("user-valid") != true){
-//        location.replace("../index.php");
-//    }
+    // make sure user has logged on
+    if(sessionStorage.getItem("user-valid") != true){
+        location.replace("../index.php");
+    }
     
     $utype = sessionStorage.getItem("user-type");
     $name = sessionStorage.getItem("user-name");
@@ -65,13 +84,23 @@ $(document).ready(function(){
     window.setInterval(interrupt, 5000);
 });
 
+/* ==== ISR for the APPLICATION ==== */
 function interrupt(){
+    /* 
+    Make a call to the server and pull
+    all the most recent content
+    */
     pullAndLoad();
 }
 
-
 function pullAndLoad(){
-    
+    /*
+        The action of calling the server and pulling
+        all of the information.
+        The information is then dynamically loaded onto
+        the page.
+        
+    */
 	$pin = sessionStorage.getItem("lab-pin");
 	if($pin == null) return;
 
@@ -120,28 +149,28 @@ function pullAndLoad(){
 				}
 			}
 	  
-		        // Dynamically display Questions and Answers
-			for(var i=oldLen; i<qaarray.length; i++){
-				var item = QAArray[i];
+            // Dynamically display Questions and Answers
+            for(var i=oldLen; i<qaarray.length; i++){
+                var item = QAArray[i];
 
-				var answered="";
-				var $answer;
-				if(!item.answered){
-					answered = "unanswered";
-					$answer = $("<p>", {id: "ans-" + item.id, class: "answer"}).text("");
-				} else {
-					$answer = $("<p>", {id: "ans-" + item.id, class: "answer"}).text("TA: " + item.answer);
-				}
+                var answered="";
+                var $answer;
+                if(!item.answered){
+                    answered = "unanswered";
+                    $answer = $("<p>", {id: "ans-" + item.id, class: "answer"}).text("");
+                } else {
+                    $answer = $("<p>", {id: "ans-" + item.id, class: "answer"}).text("TA: " + item.answer);
+                }
 
-				var $div = $("<div>", {id: item.id, class: "QA well well-sm " + answered});
-		
-				var $time = $("<i>").text(item.timestamp);
-				var $question = $("<blockquote>", {class: "question"}).text(item.name + ": " + item.quesiton);
+                var $div = $("<div>", {id: item.id, class: "QA well well-sm " + answered});
 
-				$div.append($time, $question, $answer);
-				$("#app-forum").append($div);
-			}
-		} // end SUCCESS
+                var $time = $("<i>").text(item.timestamp);
+                var $question = $("<blockquote>", {class: "question"}).text(item.name + ": " + item.quesiton);
+
+                $div.append($time, $question, $answer);
+                $("#app-forum").append($div);
+            }
+        } // end SUCCESS
     });
     
     // pull all Announcement information and put it in the database
@@ -176,6 +205,11 @@ function pullAndLoad(){
 
 /* ==== FUNCTIONALITY === */
 $(document).on('click', "#announce-btn", function(){
+    /*
+        Function called when USER presses TOGGLE VIEW
+        Switches between the QUESTIONS ANSWERS Forum
+        and the ANNOUNCEMENT forum
+    */
     var isHidden = ($("#announce").css("display") == "none");
     
     if(isHidden){
@@ -191,7 +225,19 @@ $(document).on('click', "#announce-btn", function(){
 
 /*===== LIVE EVENT DEFINITIONS =====*/
 $(document).on('click', '.QA', function(){
-
+    /*
+        A function that is called when a QUESTION ANSWER OBJECT (a student's question)
+        is called. 
+        This function will pull up a MODAL, or a popup
+            for TAs:
+            - edit answer
+            - dismiss question
+            - cancel popup
+            
+            for Student's OWN questions:
+            - dismiss question
+            - cancel popul
+    */
     var user = sessionStorage.getItem("user-type");
 
     var qa = null;
@@ -233,6 +279,10 @@ $(document).on('click', '.QA', function(){
 });
 
 $(document).on('click', '#response-submit', function(){
+    /*
+        Function called when the TA submits an answer to 
+        a question via the MODAL/POPUP
+    */
     var qID = $("#qID").val();
     var ans = $("#ta-answer").val();
     
@@ -250,6 +300,10 @@ $(document).on('click', '#response-submit', function(){
 });
 
 $(document).on('click', '#dismiss-qa', function(){
+    /*
+        Function called when either a STUDENT or TA
+        dismisses a question
+    */
 	var qID = $("#qID").val();
 	var ans = "#DISMISSED";
 
@@ -268,6 +322,10 @@ $(document).on('click', '#dismiss-qa', function(){
 
 /* STATIC UI ELEMENTS */
 function closeModal(){
+    /*
+        Describes the behavior of the form in the MODAL
+        when the modal is closed
+    */
     $("#qID").val("");
     $("#modalLabel").text("");
     $("#student-question").text("");
@@ -278,6 +336,12 @@ function closeModal(){
 }
 
 $("#logout-btn").click(function(){
+    /*
+        Function called when the LOGOUT button is pressed
+        in the NAVBAR.
+        Will either redirect the TA to the reciept of the lab
+        If student, it will log out the student
+    */
 	$type = sessionStorage.getItem("user-type");
 	$pin = sessionStorage.getItem("lab-pin");
     $.ajax({ url: 'logout.php',
@@ -305,10 +369,20 @@ $("#logout-btn").click(function(){
 });
 
 $(".modal-close").click(function(){
+    /*
+        Function called when the CANCEL button on the 
+        MODAL is clicked.
+    */
     closeModal();
 });
 
 $("#send-question").click(function(){
+    /*
+        Function called when the SEND button on the QUESTION ANSWER
+        forum is CLICKED.
+        Pushes new question information to the server and reloads
+        the page.
+    */
 	if(sessionStorage.getItem("user-type") == "ta") return;
 	// since it is a student name & uname are the same
 	$name = sessionStorage.getItem("user-name"); 
@@ -328,6 +402,10 @@ $("#send-question").click(function(){
 });
 
 $("#send-announcement").click(function(){
+    /*
+        Function called when the SEND button is pressed on the 
+        ANNOUNCEMENT forum, where the TA is sending an announcement
+    */
 	if(sessionStorage.getItem("user-type") == "student") return;
     $announcement =  $("#a-bar").val();
 	$pin = sessionStorage.getItem("lab-pin");
@@ -343,4 +421,3 @@ $("#send-announcement").click(function(){
 	}
     });
 });
-

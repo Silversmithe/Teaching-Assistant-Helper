@@ -1,6 +1,11 @@
 /*
 	index.css
+	November 27th, 2017
+    
+    Styling for index.php
 */
+
+/* ==== TAG STYLES ==== */
 html {
     height: 100%;
 }
@@ -14,6 +19,7 @@ body {
     background-size: cover;
 }
 
+/* ==== SPACING ==== */
 #border{
     text-align: center;
     padding: 2%;
@@ -25,10 +31,17 @@ body {
     padding: 5%;
 }
 
+/* ==== FORM and SELECTION ==== */
 #selection {
     visibility: visible;
 }
 
+.form-style {
+    border-radius: 10px;
+    padding: 2%;
+}
+
+/* ==== BUTTONS ==== */
 #student-btn, #ta-btn {
     border-radius: 10px;
     width: 200px;
@@ -48,9 +61,3 @@ body {
     visibility: hidden;
     display: none;
 }
-
-.form-style {
-    border-radius: 10px;
-    padding: 2%;
-}
-

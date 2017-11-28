@@ -23,9 +23,7 @@
                             <button id="create-btn" type="button" class="btn btn-primary">Create Session</button>
                         </div>
                         <br><hr><br>
-                        <form action="logout.php" method="post">
-                            <button type="submit" class="btn btn-default">Log Out</button>
-                        </form>
+                        <button id="logout" type="button" class="btn btn-default">Log Out</button>
                     </div>
                 </div>
                 <div class="col-xs-2"></div>   

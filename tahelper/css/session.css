@@ -1,7 +1,11 @@
 /*
- * 	session.css
- * 	October 31st, 2017
- */
+	session.css
+	November 27th, 2017
+    
+    Styling for session.php
+*/
+
+/* ==== TAG STYLES ==== */
 html {
     height: 100%;
 }
@@ -15,16 +19,19 @@ body {
     background-size: cover;
 }
 
+/* ==== SPACING ==== */
 #border {
     padding: 5%;
+}
+
+/* ==== SESSION CREATION ==== */ 
+
+#title-label{
+	padding: 5%;
 }
 
 #lab-creation{
     border-radius: 20px;
     padding: 5%;
     background-color: whitesmoke;
-}
-
-#title-label{
-	padding: 5%;
 }

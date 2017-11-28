@@ -5,8 +5,57 @@ VERSION: 1.1.1
 A web application for helping teaching assistants answer student's questions in lab in a just and efficient order
 
 This section will give an in-depth guide on how to install and run our program, which includes a web page folder as well as a guide on how to install and start a MySQL database to use with our application. This installation guide requires that you be able to alter code in Linux terminal, open and create tables in MySQL, and have access to SCU licensed materials, such as SCU's MySQL database and SCU's webpage system.
+
+***
+## File Structure
+
+* README.md
+* tahelper
+    * css
+        * index.css
+        * app.css
+        * session.css
+        * bootstrap-theme.css
+        * bootstrap-theme.css.map
+        * bootstrap-theme.min.css
+        * bootstrap-theme.min.css.map
+        * bootstrap.css
+        * bootstrap.css.map
+        * bootstrap.min.css
+        * bootstrap.min.css.map
+    * fonts
+        * glyphicons-halflings-regular.eot
+        * glyphicons-halflings-regular.svg
+        * glyphicons-halflings-regular.ttf
+        * glyphicons-halflings-regular.woff
+        * glyphicons-halflings-regular.woff2
+    * img
+        * conor.jpg (https://i.pinimg.com/originals/55/73/ed/5573ed456fa033061dc3b726e9a34458.jpg)
+    * js
+        * app.js
+        * bootstrap.js
+        * bootstrap.min.js
+        * index.js
+        * jquery-3.2.1.min.js
+        * session.js
+    * php
+        * admin.php
+        * app.php
+        * create_session.php
+        * logout.php
+        * object.php
+        * pull_session_info.php
+        * push_session_info.php
+        * session.php
+        * student_login.php
+        * ta_login.php
+        * ta_register.php
+    * index.php
   
-Installing the Database
+ 
+***
+## Installation Guide 
+### Installing the Database
  
   	1. Email SCU technical support at support@engr.scu.edu and request to have a MySQL database account made for you.
     2. Record the user name and password from the response, they will be needed to both access the database and rewrite the code in the webpage folder. Your database's name is "sdb_<your_username>"
@@ -15,7 +64,7 @@ Installing the Database
     5. Next, the terminal will prompt you for your password, into which you will enter the password you received earlier from the email, giving you access to the database.
     
     
-Creating the Tables
+### Creating the Tables
    	
    	After following the previous section's steps and still in the terminal window that has MySQL open, type in "
     
@@ -34,7 +83,7 @@ Creating the Tables
     "
    	
     
-Changing the Code
+### Changing the Code
 
     After following the previous two sections, it is now necessary to change the code to access this new database you have created instead of the old database.
     
@@ -44,7 +93,7 @@ Changing the Code
     
     
    
-Final Steps
+### Final Steps
     
     1. Move the folder "tahelper" into your SCU webpage folder   
     2. To start the program, go to "students.engr.scu.edu/~<your_username>/tahelper/index.php
