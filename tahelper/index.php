@@ -72,9 +72,6 @@
                         Password: <input id="ta-new-pass" type="password" name="password"/>
                         <br><br>
                         Confirm Password: <input id="ta-pass-check" type="password" name="confirm-password" />
-                        <br><br>
-                        Authorization Code: <input id="ta-auth" type="password" name="auth-code"/>
-                        <br><br>
                         <button id="register-ta" type="button" class="btn btn-default">Submit</button>
                         <br><br>
                     </form>
